@@ -1,3 +1,4 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+contact_book:
+    resource: "@ContactBookBundle/Controller/"
+    type:     annotation
+    prefix:   /
