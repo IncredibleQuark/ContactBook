@@ -46,7 +46,7 @@ class ContactController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            return $this->redirectToRoute('contactbook_contact_createnewcontact');
+            return $this->redirectToRoute('contactbook_contact_showallcontacts');
         }
 
         return ['form' => $form->createView()];
@@ -89,7 +89,7 @@ class ContactController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('contactbook_contact_createeditform', ['id' => $contact->getId()]);
+            return $this->redirectToRoute('contactbook_contact_showallcontacts');
         }
 
         return ['form' => $form->createView()];
@@ -98,10 +98,47 @@ class ContactController extends Controller
     /**
      * @Route("/{id}")
      * @Template(":Contact:show.html.twig")
-     * @Method("POST")
+     * @Method("GET")
      */
     public function showContactAction($id)
     {
+        $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
 
+        if (!$contact) {
+            throw $this->createNotFoundException('Tweet not found');
+        }
+
+        return ['contact' => $contact];
+    }
+
+    /**
+     * @Route("/")
+     * @Template(":Contact:show_all.html.twig")
+     * @Method("GET")
+     */
+    public function showAllContactsAction()
+    {
+        $contacts = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->findAll();
+
+        if (!$contacts) {
+            throw $this->createNotFoundException('Tweet not found');
+        }
+
+        return ['contacts' => $contacts];
+    }
+
+    /**
+     * @Route("/delete/{id}")
+     */
+    public function deleteContactAction($id)
+    {
+        $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
+        if (!$contact){
+            throw $this->createNotFoundException('Contact not found');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($contact);
+        $em->flush();
+        return $this->redirectToRoute('contactbook_contact_showallcontacts');
     }
 }
