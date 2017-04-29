@@ -17,12 +17,12 @@ class ContactController extends Controller
      * @Template(":Contact:new.html.twig")
      * @Method("GET")
      */
-    public function createNewFormAction()
+    public function showNewFormAction()
     {
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact,
-                ['action' => $this->generateUrl('contactbook_contact_createnewcontact')]);
+            ['action' => $this->generateUrl('contactbook_contact_createnewcontact')]);
 
         return ['form' => $form->createView()];
     }
@@ -50,5 +50,58 @@ class ContactController extends Controller
         }
 
         return ['form' => $form->createView()];
+    }
+
+    /**
+     * @Route("/{id}/edit")
+     * @Template(":Contact:edit.html.twig")
+     * @Method("GET")
+     */
+    public function showEditFormAction($id)
+    {
+        $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException('Not found!');
+        }
+
+        $form = $this->createForm(ContactType::class, $contact);
+
+        return ['form' => $form->createView()];
+    }
+
+    /**
+     * @Route("/{id}/edit")
+     * @Template(":Contact:edit.html.twig")
+     * @Method("POST")
+     */
+    public function createEditFormAction(Request $request, $id)
+    {
+        $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
+        if (!$contact) {
+            throw $this->createNotFoundException('Contact not Found');
+        }
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->flush();
+
+            return $this->redirectToRoute('contactbook_contact_createeditform', ['id' => $contact->getId()]);
+        }
+
+        return ['form' => $form->createView()];
+    }
+
+    /**
+     * @Route("/{id}")
+     * @Template(":Contact:show.html.twig")
+     * @Method("POST")
+     */
+    public function showContactAction($id)
+    {
+
     }
 }
