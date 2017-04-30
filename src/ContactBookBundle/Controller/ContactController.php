@@ -46,7 +46,9 @@ class ContactController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            return $this->redirectToRoute('contactbook_contact_showallcontacts');
+            $id= $contact->getId();
+
+            return $this->redirectToRoute('contactbook_contact_showcontact', array('id' => $id));
         }
 
         return ['form' => $form->createView()];
@@ -79,7 +81,7 @@ class ContactController extends Controller
     {
         $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
         if (!$contact) {
-            throw $this->createNotFoundException('Contact not Found');
+            throw $this->createNotFoundException('Contact not found');
         }
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -89,7 +91,7 @@ class ContactController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('contactbook_contact_showallcontacts');
+            return $this->redirectToRoute('contactbook_contact_showcontact', array('id' => $id));
         }
 
         return ['form' => $form->createView()];
@@ -105,7 +107,7 @@ class ContactController extends Controller
         $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
 
         if (!$contact) {
-            throw $this->createNotFoundException('Tweet not found');
+            throw $this->createNotFoundException('Contact not found');
         }
 
         return ['contact' => $contact];
@@ -121,7 +123,7 @@ class ContactController extends Controller
         $contacts = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->findAll();
 
         if (!$contacts) {
-            throw $this->createNotFoundException('Tweet not found');
+            return $this->redirectToRoute('contactbook_contact_createnewcontact');
         }
 
         return ['contacts' => $contacts];
