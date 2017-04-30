@@ -17,7 +17,7 @@ class AddressController extends Controller
      * @Template(":Address:new.html.twig")
      * @Method("GET")
      */
-    public function showNewAddressForm()
+    public function showNewAddressFormAction()
     {
         $address = new Address();
 
@@ -42,6 +42,8 @@ class AddressController extends Controller
         }
 
         $address->setContact($contact);
+        $contact->addAddress($address);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,5 +54,21 @@ class AddressController extends Controller
         }
 
         return ['form' => $form->createView()];
+    }
+
+    /**
+     * @Route("/{id}/showAllAddresses")
+     * @Template(":Address:show_all.html.twig")
+     * @Method("GET")
+     */
+    public function showAllAddressesAction($id)
+    {
+        $addresses = $this->getDoctrine()->getRepository('ContactBookBundle:Address')->findById($id);
+
+        if (!$addresses) {
+            return $this->redirectToRoute('contactbook_contact_showcontact', array('id' => $id));
+        }
+
+        return ['addresses' => $addresses];
     }
 }

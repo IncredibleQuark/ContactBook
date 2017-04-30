@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class AddressRepository extends EntityRepository
 {
+    public function findById($id)
+    {
+        $dql = "SELECT address FROM ContactBookBundle:Address address WHERE address.contact = :id";
+        $addresses = $this->getEntityManager()->createQuery($dql)->setParameter('id', $id)->getResult();
+        return $addresses;
+    }
 }

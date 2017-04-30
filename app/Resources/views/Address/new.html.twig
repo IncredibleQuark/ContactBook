@@ -3,24 +3,14 @@
 
 
 {%  block body %}
-   {# <div class="container">
 
-        <form  action="" method="POST">
-            <label>City: <input type="text" name="city"></label><br>
-            <label>Street: <input type="text" name="street"></label><br>
-            <label>House Number <input type="text" name="house_number"></label><br>
-            <label>Apartment Number: <input type="text" name="apartment_number"></label><br>
-            <label>Postal Code: <input type="text" name="postal_code"></label><br>
-            <input type="submit" value="Add"><br>
-
-        </form>#}
-
-
+    <div class="container">
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button type="submit">Send</button>
     {{ form_end(form) }}
-<a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a>
+
+     <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a>
 
     </div>
 {% endblock %}
