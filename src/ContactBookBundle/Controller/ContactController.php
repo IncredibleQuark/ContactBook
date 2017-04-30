@@ -2,7 +2,9 @@
 
 namespace ContactBookBundle\Controller;
 
+use ContactBookBundle\Entity\Address;
 use ContactBookBundle\Entity\Contact;
+use ContactBookBundle\Form\AddressType;
 use ContactBookBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -69,8 +71,9 @@ class ContactController extends Controller
 
         $form = $this->createForm(ContactType::class, $contact);
 
-        return ['form' => $form->createView()];
+        return ['formPrimary' => $form->createView(), 'id' => $id];
     }
+
 
     /**
      * @Route("/{id}/edit")
@@ -94,8 +97,9 @@ class ContactController extends Controller
             return $this->redirectToRoute('contactbook_contact_showcontact', array('id' => $id));
         }
 
-        return ['form' => $form->createView()];
+        return ['formPrimary' => $form->createView()];
     }
+
 
     /**
      * @Route("/{id}")
@@ -143,4 +147,7 @@ class ContactController extends Controller
         $em->flush();
         return $this->redirectToRoute('contactbook_contact_showallcontacts');
     }
+
+
+
 }

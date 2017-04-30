@@ -4,10 +4,13 @@
 
 {%  block body %}
     <div class="container">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_start(formPrimary) }}
+        {{ form_widget(formPrimary) }}
         <button type="submit">Send</button>
-        {{ form_end(form) }}
+        {{ form_end(formPrimary) }}
+
+        <a href="{{ path('contactbook_address_shownewaddressform', {'id': id}) }}">Add address</a><br>
         <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a>
+
     </div>
 {% endblock %}
