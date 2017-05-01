@@ -61,6 +61,7 @@ class Address
      */
     private $contact;
 
+
     /**
      * Get id
      *
@@ -184,5 +185,28 @@ class Address
     public function getPostalCode()
     {
         return $this->postalCode;
+    }
+
+    /**
+     * Set contact
+     *
+     * @param \ContactBookBundle\Entity\Contact $contact
+     * @return Address
+     */
+    public function setContact(\ContactBookBundle\Entity\Contact $contact = null)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \ContactBookBundle\Entity\Contact 
+     */
+    public function getContact()
+    {
+        return $this->contact;
     }
 }

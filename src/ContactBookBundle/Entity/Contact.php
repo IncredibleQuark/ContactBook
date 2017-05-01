@@ -47,6 +47,11 @@ class Contact
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ContactBookBundle\Entity\Telephone", mappedBy="contact")
+     */
+    private $telephone;
+
 
     /**
      * Get id
@@ -165,5 +170,38 @@ class Contact
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Add telephone
+     *
+     * @param \ContactBookBundle\Entity\Telephone $telephone
+     * @return Contact
+     */
+    public function addTelephone(\ContactBookBundle\Entity\Telephone $telephone)
+    {
+        $this->telephone[] = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Remove telephone
+     *
+     * @param \ContactBookBundle\Entity\Telephone $telephone
+     */
+    public function removeTelephone(\ContactBookBundle\Entity\Telephone $telephone)
+    {
+        $this->telephone->removeElement($telephone);
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
     }
 }
