@@ -1,17 +1,18 @@
 {% extends "::base.html.twig"  %}
-{% block title %}All addresses {% endblock %}
-
 
 {%  block body %}
 
     <div class="container">
-        <h1>Addresses</h1>
+        <h2>Addresses</h2>
 
         {% for address in addresses %}
             <div class="address">
 
                 <p>City: {{ address.city }}</p>
                 <p>Street: {{ address.street }}</p>
+                <p>House no. {{ address.houseNumber }}</p>
+                <p>Apartment no. {{ address.apartmentNumber }}</p>
+                <p>Postal code: {{ address.postalCode }}</p>
                 <a href="{{ path('contactbook_address_deleteaddress', {'id': address.id}) }}">Delete</a><br>
                 <hr>
 

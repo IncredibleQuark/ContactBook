@@ -2,53 +2,53 @@
 
 namespace ContactBookBundle\Controller;
 
-use ContactBookBundle\Entity\Address;
-use ContactBookBundle\Form\AddressType;
+use ContactBookBundle\Entity\Telephone;
+use ContactBookBundle\Form\TelephoneType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class AddressController extends Controller
+class TelephoneController extends Controller
 {
     /**
-     * @Route("/{id}/addAddress")
+     * @Route("/{id}/addTelephone")
      * @Template(":Address:new.html.twig")
      * @Method("GET")
      */
-    public function showNewAddressFormAction()
+    public function showNewTelephoneFormAction()
     {
-        $address = new Address();
+        $telephone = new Telephone();
 
-        $form = $this->createForm(AddressType::class, $address);
+        $form = $this->createForm(TelephoneType::class, $telephone);
 
         return ['form' => $form->createView()];
     }
 
     /**
-     * @Route("/{id}/addAddress")
-     * @Template(":Address:new.html.twig")
+     * @Route("/{id}/addTelephone")
+     * @Template(":Telephone:new.html.twig")
      * @Method("POST")
      */
-    public function createNewAddressAction(Request $request, $id)
+    public function createNewTelephoneAction(Request $request, $id)
     {
-        $address = new Address();
-        $form = $this->createForm(AddressType::class, $address);
+        $telephone = new Telephone();
+        $form = $this->createForm(TelephoneType::class, $telephone);
         $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
 
         if (!$contact) {
             throw $this->createNotFoundException('Contact not found');
         }
 
-        $address->setContact($contact);
-        $contact->addAddress($address);
+        $telephone->setContact($contact);
+        $contact->addTelephone($telephone);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($address);
+            $em->persist($telephone);
             $em->flush();
             return $this->redirectToRoute('contactbook_contact_showcontact', ['id' => $id]);
         }
@@ -57,32 +57,32 @@ class AddressController extends Controller
     }
 
     /**
-     * @Route("/{id}/showAllAddresses")
-     * @Template(":Address:show_all.html.twig")
+     * @Route("/{id}/showAllTelephones")
+     * @Template(":Telephone:show_all.html.twig")
      * @Method("GET")
      */
-    public function showAllAddressesAction($id)
+    public function showAllTelephonesAction($id)
     {
-        $addresses = $this->getDoctrine()->getRepository('ContactBookBundle:Address')->findById($id);
+        $telephones = $this->getDoctrine()->getRepository('ContactBookBundle:Telephone')->findById($id);
 
-        if (!$addresses) {
+        if (!$telephones) {
             return $this->redirectToRoute('contactbook_contact_showcontact', array('id' => $id));
         }
 
-        return ['addresses' => $addresses];
+        return ['telephones' => $telephones];
     }
 
     /**
-     * @Route("/{id}/deleteAddress")
+     * @Route("/{id}/deleteTelephone")
      */
-    public function deleteAddressAction($id)
+    public function deleteTelephoneAction($id)
     {
-        $address = $this->getDoctrine()->getRepository('ContactBookBundle:Address')->find($id);
-        if (!$address){
-            throw $this->createNotFoundException('Address not found');
+        $telephone = $this->getDoctrine()->getRepository('ContactBookBundle:Telephone')->find($id);
+        if (!$telephone){
+            throw $this->createNotFoundException('Telephone not found');
         }
         $em = $this->getDoctrine()->getManager();
-        $em->remove($address);
+        $em->remove($telephone);
         $em->flush();
         return $this->redirectToRoute('contactbook_contact_showallcontacts');
     }

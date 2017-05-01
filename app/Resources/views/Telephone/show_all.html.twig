@@ -1,0 +1,20 @@
+{% extends "::base.html.twig"  %}
+
+{%  block body %}
+    <div class="container">
+        <h2>Telephones</h2>
+
+        {% for telephone in telephones %}
+            <div class="telephones">
+
+                <p>Telephone number: {{ telephone.phoneNumber }}</p>
+                <p>Type: {{ telephone.type }}</p>
+                <a href="{{ path('contactbook_telephone_deletetelephone', {'id': telephone.id}) }}">Delete</a><br>
+                <hr>
+
+            </div>
+        {% else %}
+            <p>Telephones not found!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

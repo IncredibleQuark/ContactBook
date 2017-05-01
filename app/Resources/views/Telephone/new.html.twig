@@ -1,0 +1,16 @@
+{% extends "::base.html.twig"  %}
+{% block title %}Add Telephone{% endblock %}
+
+
+{%  block body %}
+
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Send</button>
+        {{ form_end(form) }}
+
+        <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a>
+
+    </div>
+{% endblock %}

@@ -4,13 +4,17 @@
 
 {%  block body %}
     <div class="container">
+        <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
+        <h2>Contact info</h2>
     <p>Name: {{ contact.name }}</p>
     <p>Surname: {{ contact.surname }}</p>
     <p>Description: {{ contact.description }}</p>
-    <a href="{{ path('contactbook_contact_showeditform', {'id': contact.id}) }}">Edit</a><br>
-    <a href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete</a><br>
-    <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
-     {{ include(':Address:show_all.html.twig', {'addresses': contact.address}) }}
 
+
+     {{ include(':Address:show_all.html.twig', {'addresses': contact.address}) }}
+     {{ include(':Telephone:show_all.html.twig', {'telephones': contact.telephone}) }}
+
+        <a href="{{ path('contactbook_contact_showeditform', {'id': contact.id}) }}">Edit contact</a><br>
+        <a href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete contact</a><br>
     </div>
 {% endblock %}
