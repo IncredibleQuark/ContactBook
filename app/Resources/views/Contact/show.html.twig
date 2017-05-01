@@ -13,7 +13,7 @@
 
      {{ include(':Address:show_all.html.twig', {'addresses': contact.address}) }}
      {{ include(':Telephone:show_all.html.twig', {'telephones': contact.telephone}) }}
-
+     {{ include(':Email:show_all.html.twig', {'emails': contact.email}) }}
         <a href="{{ path('contactbook_contact_showeditform', {'id': contact.id}) }}">Edit contact</a><br>
         <a href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete contact</a><br>
     </div>

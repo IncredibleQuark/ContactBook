@@ -1,0 +1,21 @@
+{% extends "::base.html.twig"  %}
+
+{%  block body %}
+
+    <div class="container">
+        <h2>Emails</h2>
+
+        {% for email in emails %}
+            <div class="email">
+
+                <p>Email: {{ email.email }}</p>
+                <p>Type: {{ email.type }}</p>
+                <a href="{{ path('contactbook_email_deleteemail', {'id': email.id}) }}">Delete</a><br>
+                <hr>
+
+            </div>
+        {% else %}
+            <p>Emails not found!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

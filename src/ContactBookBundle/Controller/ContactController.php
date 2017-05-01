@@ -2,9 +2,7 @@
 
 namespace ContactBookBundle\Controller;
 
-use ContactBookBundle\Entity\Address;
 use ContactBookBundle\Entity\Contact;
-use ContactBookBundle\Form\AddressType;
 use ContactBookBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
