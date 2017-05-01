@@ -5,12 +5,12 @@ namespace ContactBookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Telephone
+ * Email
  *
- * @ORM\Table(name="telephone")
- * @ORM\Entity(repositoryClass="ContactBookBundle\Repository\TelephoneRepository")
+ * @ORM\Table(name="email")
+ * @ORM\Entity(repositoryClass="ContactBookBundle\Repository\EmailRepository")
  */
-class Telephone
+class Email
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class Telephone
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number", type="string", length=50)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
-    private $phoneNumber;
+    private $email;
 
     /**
      * @var string
@@ -36,10 +36,9 @@ class Telephone
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ContactBookBundle\Entity\Contact", inversedBy="telephone")
+     * @ORM\ManyToOne(targetEntity="ContactBookBundle\Entity\Contact", inversedBy="email")
      */
     private $contact;
-
 
     /**
      * Get id
@@ -52,33 +51,33 @@ class Telephone
     }
 
     /**
-     * Set phoneNumber
+     * Set email
      *
-     * @param string $phoneNumber
-     * @return Telephone
+     * @param string $email
+     * @return Email
      */
-    public function setPhoneNumber($phoneNumber)
+    public function setEmail($email)
     {
-        $this->phoneNumber = $phoneNumber;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get phoneNumber
+     * Get email
      *
      * @return string 
      */
-    public function getPhoneNumber()
+    public function getEmail()
     {
-        return $this->phoneNumber;
+        return $this->email;
     }
 
     /**
      * Set type
      *
      * @param string $type
-     * @return Telephone
+     * @return Email
      */
     public function setType($type)
     {
@@ -101,7 +100,7 @@ class Telephone
      * Set contact
      *
      * @param \ContactBookBundle\Entity\Contact $contact
-     * @return Telephone
+     * @return Email
      */
     public function setContact(\ContactBookBundle\Entity\Contact $contact = null)
     {
