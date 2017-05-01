@@ -6,14 +6,13 @@
 
     <div class="container">
         <h1>Addresses</h1>
-       
+
         {% for address in addresses %}
             <div class="address">
 
-
                 <p>City: {{ address.city }}</p>
                 <p>Street: {{ address.street }}</p>
-
+                <a href="{{ path('contactbook_address_deleteaddress', {'id': address.id}) }}">Delete</a><br>
                 <hr>
 
             </div>

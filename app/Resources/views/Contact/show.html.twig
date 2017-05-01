@@ -7,9 +7,10 @@
     <p>Name: {{ contact.name }}</p>
     <p>Surname: {{ contact.surname }}</p>
     <p>Description: {{ contact.description }}</p>
-    <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
-        {{ include(':Address:show_all.html.twig', {'addresses': contact.address}) }}
     <a href="{{ path('contactbook_contact_showeditform', {'id': contact.id}) }}">Edit</a><br>
-    <a href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete</a>
+    <a href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete</a><br>
+    <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
+     {{ include(':Address:show_all.html.twig', {'addresses': contact.address}) }}
+
     </div>
 {% endblock %}

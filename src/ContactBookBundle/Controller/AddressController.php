@@ -38,7 +38,7 @@ class AddressController extends Controller
         $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->find($id);
 
         if (!$contact) {
-            throw $this->createNotFoundException('Contact not found');
+            throw $this->createNotFoundException('Address not found');
         }
 
         $address->setContact($contact);
@@ -70,5 +70,20 @@ class AddressController extends Controller
         }
 
         return ['addresses' => $addresses];
+    }
+
+    /**
+     * @Route("/{id}/deleteAddress")
+     */
+    public function deleteAddressAction($id)
+    {
+        $contact = $this->getDoctrine()->getRepository('ContactBookBundle:Address')->find($id);
+        if (!$contact){
+            throw $this->createNotFoundException('Address not found');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($contact);
+        $em->flush();
+        return $this->redirectToRoute('contactbook_contact_showallcontacts');
     }
 }
