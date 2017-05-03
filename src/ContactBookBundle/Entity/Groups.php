@@ -30,7 +30,7 @@ class Groups
 
     /**
      * Many Groups have Many Users.
-     * @ORM\ManyToMany(targetEntity="ContactBookBundle\Entity\Contact", mappedBy="Groups")
+     * @ORM\ManyToMany(targetEntity="ContactBookBundle\Entity\Contact", mappedBy="groups")
      */
     private $contact;
 

@@ -6,7 +6,8 @@
 
     <div class="container">
         <h1>My contacts</h1>
-        <a href="{{ path('contactbook_contact_createnewcontact') }}">Add new contact</a>
+        <a href="{{ path('contactbook_contact_createnewcontact') }}">Add new contact</a><br>
+        <a href="{{ path('contactbook_groups_shownewgroupform') }}">Add new group</a>
         {% for contact in contacts %}
             <div class="contact">
 

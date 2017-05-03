@@ -59,7 +59,7 @@ class Contact
 
     /**
      * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="ContactBookBundle\Entity\Groups", inversedBy="Contact")
+     * @ORM\ManyToMany(targetEntity="ContactBookBundle\Entity\Groups", inversedBy="contact")
      *  @ORM\JoinTable(name="contact_groups")
      */
     private $groups;
