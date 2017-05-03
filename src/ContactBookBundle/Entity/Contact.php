@@ -57,6 +57,12 @@ class Contact
      */
     private $email;
 
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="ContactBookBundle\Entity\Groups", inversedBy="Contact")
+     *  @ORM\JoinTable(name="contact_groups")
+     */
+    private $groups;
 
     /**
      * Get id
@@ -241,5 +247,38 @@ class Contact
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \ContactBookBundle\Entity\Groups $groups
+     * @return Contact
+     */
+    public function addGroup(\ContactBookBundle\Entity\Groups $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \ContactBookBundle\Entity\Groups $groups
+     */
+    public function removeGroup(\ContactBookBundle\Entity\Groups $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

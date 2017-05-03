@@ -57,6 +57,12 @@ class Contact
      */
     private $email;
 
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="ContactBookBundle\Entity\Groups", inversedBy="Contact")
+     *  @ORM\JoinTable(name="contact_groups")
+     */
+    private $groups;
 
     /**
      * Get id
@@ -208,5 +214,71 @@ class Contact
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * Add email
+     *
+     * @param \ContactBookBundle\Entity\Email $email
+     * @return Contact
+     */
+    public function addEmail(\ContactBookBundle\Entity\Email $email)
+    {
+        $this->email[] = $email;
+
+        return $this;
+    }
+
+    /**
+     * Remove email
+     *
+     * @param \ContactBookBundle\Entity\Email $email
+     */
+    public function removeEmail(\ContactBookBundle\Entity\Email $email)
+    {
+        $this->email->removeElement($email);
+    }
+
+    /**
+     * Get email
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \ContactBookBundle\Entity\Groups $groups
+     * @return Contact
+     */
+    public function addGroup(\ContactBookBundle\Entity\Groups $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \ContactBookBundle\Entity\Groups $groups
+     */
+    public function removeGroup(\ContactBookBundle\Entity\Groups $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }
