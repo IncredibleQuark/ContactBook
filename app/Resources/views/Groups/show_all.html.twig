@@ -1,0 +1,19 @@
+{% extends "::base.html.twig"  %}
+
+{% block body %}
+    <div class="container">
+    <h1>Groups</h1><br>
+        <a href="{{ path('contactbook_groups_shownewgroupform') }}">Add new group</a><br> <br>
+        {% for group in groups %}
+            <div class="groups">
+
+               Name: {{ group.name }}
+
+                <hr>
+
+            </div>
+        {% else %}
+            <p>Groups not found!</p>
+        {% endfor %}
+    </div>
+{% endblock %}

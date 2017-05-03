@@ -48,9 +48,22 @@ class GroupsController extends Controller
 
 
 
-            return $this->redirectToRoute('contactbook_contact_showallcontacts');
+            return $this->redirectToRoute('contactbook_groups_showallgroups');
         }
 
         return ['form' => $form->createView()];
     }
+
+    /**
+     * @Route("/groups/showAll")
+     * @Template(":Groups:show_all.html.twig")
+     */
+    public function showAllGroupsAction()
+    {
+        $groups = $this->getDoctrine()->getRepository('ContactBookBundle:Groups')->findAll();
+
+
+        return ['groups' => $groups];
+    }
+
 }
