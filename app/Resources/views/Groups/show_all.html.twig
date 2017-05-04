@@ -2,13 +2,15 @@
 
 {% block body %}
     <div class="container">
+        <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
     <h1>Groups</h1><br>
         <a href="{{ path('contactbook_groups_shownewgroupform') }}">Add new group</a><br> <br>
         {% for group in groups %}
             <div class="groups">
 
-               Name: {{ group.name }}
-
+                <p>Name: <a href="">{{ group.name }}</a></p>
+                <br>
+               <a href="{{ path('contactbook_groups_deletegactionroup', {'id': group.id}) }}">Delete group</a><br>
                 <hr>
 
             </div>

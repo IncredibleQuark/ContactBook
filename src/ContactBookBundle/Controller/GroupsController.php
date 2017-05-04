@@ -66,4 +66,18 @@ class GroupsController extends Controller
         return ['groups' => $groups];
     }
 
+    /**
+     * @Route("/{id}/deleteGroup")
+     */
+    public function deleteGActionroup($id)
+    {
+        $group = $this->getDoctrine()->getRepository('ContactBookBundle:Groups')->find($id);
+        if (!$group){
+            throw $this->createNotFoundException('Group not found');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($group);
+        $em->flush();
+        return $this->redirectToRoute('contactbook_groups_showallgroups');
+    }
 }

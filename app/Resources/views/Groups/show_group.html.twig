@@ -1,0 +1,11 @@
+{% extends "::base.html.twig"  %}
+{% block title %}Group {{ group.id }}{% endblock %}
+
+
+{%  block body %}
+    <div class="container">
+        <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
+        <h2>Group {{ group.name }}</h2>
+
+    </div>
+{% endblock %}
