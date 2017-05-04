@@ -146,6 +146,19 @@ class ContactController extends Controller
         return $this->redirectToRoute('contactbook_contact_showallcontacts');
     }
 
+    /**
+     * @Route("/searchResult")
+     * @Template(":Contact:search_result.html.twig")
+     * @Method("POST")
+     */
+    public function searchContactAction(Request $request)
+    {
+        $word = $request->request->get('search');
+
+        $contacts = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->findBySurname($word);
+        return ['contacts' => $contacts];
+    }
+
 
 
 }

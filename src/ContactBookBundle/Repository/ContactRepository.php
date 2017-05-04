@@ -17,4 +17,11 @@ class ContactRepository extends EntityRepository
         $contacts = $this->getEntityManager()->createQuery($dql)->getResult();
         return $contacts;
     }
+
+    public function findBySurname($word) {
+        $dql = "SELECT contact FROM ContactBookBundle:Contact contact WHERE contact.surname LIKE :surname ";
+        $surname = '%'.$word.'%';
+        $contacts = $this->getEntityManager()->createQuery($dql)->setParameter('surname', $surname)->getResult();
+        return $contacts;
+    }
 }
