@@ -67,6 +67,22 @@ class GroupsController extends Controller
     }
 
     /**
+     * @Route("/group/{id}")
+     * @Template(":Groups:show_group.html.twig")
+     * @Method("GET")
+     */
+    public function showGroupAction($id)
+    {
+        $group = $this->getDoctrine()->getRepository('ContactBookBundle:Groups')->find($id);
+
+        if (!$group) {
+            throw $this->createNotFoundException('Contact not found');
+        }
+
+        return ['group' => $group];
+    }
+
+    /**
      * @Route("/{id}/deleteGroup")
      */
     public function deleteGActionroup($id)

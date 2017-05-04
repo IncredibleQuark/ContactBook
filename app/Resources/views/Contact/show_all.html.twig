@@ -14,8 +14,8 @@
 
                 <h3><a href="{{ path('contactbook_contact_showcontact', {'id': contact.id }) }}">Name: {{ contact.name }}  {{ contact.surname }}</a></h3>
                 <p>Description: {{ contact.description }}</p>
-                <a href="{{ path('contactbook_contact_showeditform', {'id': contact.id}) }}">Edit</a>
-                <a href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete</a>
+                <a class="btn btn-info" href="{{ path('contactbook_contact_showeditform', {'id': contact.id}) }}">Edit</a>
+                <a class="btn btn-danger" href="{{ path('contactbook_contact_deletecontact', {'id': contact.id}) }}">Delete</a>
                 <hr>
 
             </div>

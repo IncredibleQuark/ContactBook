@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class EmailRepository extends EntityRepository
 {
+    public function findById($id)
+    {
+        $dql = "SELECT email FROM ContactBookBundle:Email email WHERE email.contact = :id";
+        $emails = $this->getEntityManager()->createQuery($dql)->setParameter('id', $id)->getResult();
+        return $emails;
+    }
 }

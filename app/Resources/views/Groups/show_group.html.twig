@@ -5,7 +5,8 @@
 {%  block body %}
     <div class="container">
         <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a><br>
-        <h2>Group {{ group.name }}</h2>
+        <h2>Group {{ group.name }}</h2><br>
+        <a href="{{ path('contactbook_groups_showallgroups') }}">Show all groups</a> <br>
 
     </div>
 {% endblock %}
