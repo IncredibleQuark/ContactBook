@@ -10,7 +10,6 @@
     <p>Surname: {{ contact.surname }}</p>
     <p>Description: {{ contact.description }}</p>
 
-
      {{ include(':Address:show_all.html.twig', {'addresses': contact.address}) }}
      {{ include(':Telephone:show_all.html.twig', {'telephones': contact.telephone}) }}
      {{ include(':Email:show_all.html.twig', {'emails': contact.email}) }}

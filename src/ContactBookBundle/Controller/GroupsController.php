@@ -85,7 +85,7 @@ class GroupsController extends Controller
     /**
      * @Route("/{id}/deleteGroup")
      */
-    public function deleteGActionroup($id)
+    public function deleteGroupAction($id)
     {
         $group = $this->getDoctrine()->getRepository('ContactBookBundle:Groups')->find($id);
         if (!$group){

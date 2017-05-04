@@ -159,6 +159,15 @@ class ContactController extends Controller
         return ['contacts' => $contacts];
     }
 
+    /**
+     * @Route("/addToGroup/{id}")
+     * @Template(":Contact:add_to_group.html.twig")
+     */
+    public function addToGroupAction(Request $request, $id)
+    {
+        $groups = $this->getDoctrine()->getRepository('ContactBookBundle:Groups')->findAll();
 
+        return ['groups' => $groups];
+    }
 
 }

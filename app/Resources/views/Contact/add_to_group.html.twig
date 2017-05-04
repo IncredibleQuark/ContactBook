@@ -1,0 +1,19 @@
+{% extends "::base.html.twig"  %}
+
+{% block body %}
+
+<form action="{{ path('contactbook_groups_showallgroups') }}" method="POST">
+
+    <div>
+        <label>Add to group:
+            <select name="group_id">
+                {% for group in groups %}
+                    <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </div>
+    <div><input type="submit" value="Add"></div>
+</form>
+
+{% endblock %}
