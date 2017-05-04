@@ -122,7 +122,7 @@ class ContactController extends Controller
      */
     public function showAllContactsAction()
     {
-        $contacts = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->findAll();
+        $contacts = $this->getDoctrine()->getRepository('ContactBookBundle:Contact')->sort();
 
         if (!$contacts) {
             return $this->redirectToRoute('contactbook_contact_createnewcontact');
