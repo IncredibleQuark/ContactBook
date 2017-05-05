@@ -18,6 +18,6 @@ User Stories:
  
 5. Each additional info can be deleted.
  
-6. User can add contacts to groups. (in progress)
+6. User can add contacts to groups.
  
-7. User can display contacts in particular group. (in progress)
+7. User can display contacts in particular group.
