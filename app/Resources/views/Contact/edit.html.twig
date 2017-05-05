@@ -6,15 +6,14 @@
     <div class="container">
         <a href="{{ path('contactbook_contact_showallcontacts') }}">Main Page</a>
 
-        {{ form_start(formPrimary) }}
-        {{ form_widget(formPrimary) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
         <button type="submit">Send</button>
-        {{ form_end(formPrimary) }}
+        {{ form_end(form) }}
 
         <a href="{{ path('contactbook_address_shownewaddressform', {'id': id}) }}">Add address</a><br>
         <a href="{{ path('contactbook_telephone_shownewtelephoneform', {'id': id}) }}">Add telephone</a><br>
         <a href="{{ path('contactbook_email_shownewemailform', {'id': id}) }}">Add email</a><br>
-        <a href="{{ path('contactbook_contact_addtogroup', {'id': id}) }}">Add to group</a>
 
     </div>
 {% endblock %}
