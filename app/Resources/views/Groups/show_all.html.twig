@@ -8,7 +8,7 @@
         {% for group in groups %}
             <div class="groups">
 
-                <p>Name: <a href="{{ path('contactbook_groups_showgroup', { 'id': group.id}) }}">{{ group.name }}</a></p>
+                <p>Name: <a href="{{ path('contactbook_groups_showgroup', { 'id': group.id, 'contacts': group.contact}) }}">{{ group.name }}</a></p>
                 <br>
                <a class="btn btn-danger" href="{{ path('contactbook_groups_deletegroup', {'id': group.id}) }}">Delete group</a><br>
                 <hr>

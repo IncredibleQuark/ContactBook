@@ -1,0 +1,12 @@
+<div class="panel-heading">
+    <p><h5>Contacts in Group</h5></p>
+</div>
+{% for contact in contacts %}
+    <div class="panel-body">
+        <li class="list-group-item"><a href="{{ path('contactbook_contact_showcontact', {'id': contact.id}) }}">{{ contact.name }}</a></li>
+    </div>
+{% else %}
+    <div class="panel-body">
+        <p>No contacts found</p>
+    </div>
+{% endfor %}
